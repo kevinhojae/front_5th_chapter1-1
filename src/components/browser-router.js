@@ -13,17 +13,19 @@ export function BrowserRouter(routes) {
 
     const redirectRoute = routes.find((route) => route.path === currentPath);
 
+    const rootElement = document.getElementById("root");
+
     if (!redirectRoute) {
-      document.body.innerHTML = NotFound();
+      rootElement.innerHTML = NotFound();
       return;
     }
 
     if (currentPath !== "/" && !isAuthenticated) {
-      document.body.innerHTML = LoginPage();
+      rootElement.innerHTML = LoginPage();
       return;
     }
 
-    document.body.innerHTML = redirectRoute.element;
+    rootElement.innerHTML = redirectRoute.element;
   };
 
   window.addEventListener("popstate", render);
