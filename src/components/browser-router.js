@@ -5,6 +5,7 @@ export function BrowserRouter(routes) {
   if (!Array.isArray(routes)) throw new Error("Provide routes as array");
 
   const render = () => {
+    // TODO: refactor auth guard
     const user = localStorage.getItem("user");
     const isAuthenticated = !!user;
 
