@@ -11,6 +11,8 @@ const routes = [
 
 export const router = BrowserRouter(routes);
 
+// TODO: refactor event handler register logic
+
 document.body.addEventListener("submit", (event) => {
   const form = event.target;
 
@@ -26,5 +28,15 @@ document.body.addEventListener("submit", (event) => {
       JSON.stringify({ username, email: "", bio: "" }),
     );
     router.navigate("/");
+  }
+});
+
+document.body.addEventListener("click", (event) => {
+  const logoutLink = event.target.closest("#logout");
+
+  if (logoutLink) {
+    event.preventDefault();
+    localStorage.removeItem("user");
+    router.navigate("/login");
   }
 });
