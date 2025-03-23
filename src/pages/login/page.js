@@ -1,3 +1,5 @@
+import { SubmitButton } from "../../components/ui/submit-button";
+
 export default function LoginPage() {
   return `
     <main class="bg-gray-100 flex items-center justify-center min-h-screen">
@@ -10,7 +12,7 @@ export default function LoginPage() {
           <div class="mb-6">
             <input type="password" placeholder="비밀번호" class="w-full p-2 border rounded">
           </div>
-          <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded font-bold">로그인</button>
+          ${SubmitButton({ label: "로그인" })}
         </form>
         <div class="mt-4 text-center">
           <a href="#" class="text-blue-600 text-sm">비밀번호를 잊으셨나요?</a>

@@ -1,3 +1,4 @@
+import { SubmitButton } from "../../../components/ui/submit-button";
 import Layout from "../layout";
 
 export default function ProfilePage() {
@@ -52,14 +53,9 @@ export default function ProfilePage() {
 안녕하세요, 항해플러스에서 열심히 공부하고 있는 홍길동입니다.</textarea
           >
         </div>
-        <button
-          type="submit"
-          class="w-full bg-blue-600 text-white p-2 rounded font-bold"
-        >
-          프로필 업데이트
-        </button>
-      </form>
-    </div>
-     `,
+        ${SubmitButton({ label: "프로필 업데이트" })}
+      </form >
+    </div >
+  `,
   );
 }
