@@ -1,13 +1,12 @@
 import LandingPage from "./pages/(app)/landing/page";
 import LoginPage from "./pages/login/page";
 import ProfilePage from "./pages/(app)/profile/page";
-import { NotFound } from "./pages/not-found";
+import { BrowserRouter } from "./components/browser-router";
 
-const routes = {
-  "/": LandingPage,
-  "/profile": ProfilePage,
-  "/login": LoginPage,
-  "/404": NotFound,
-};
+const routes = [
+  { path: "/", component: LandingPage() },
+  { path: "/profile", component: ProfilePage() },
+  { path: "/login", component: LoginPage() },
+];
 
-routes;
+export const router = BrowserRouter(routes);
