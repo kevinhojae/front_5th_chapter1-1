@@ -1,4 +1,4 @@
-export default function Nav() {
+export function Nav() {
   return `
     <nav class="bg-white shadow-md p-2 sticky top-14">
       <ul class="flex justify-around">
