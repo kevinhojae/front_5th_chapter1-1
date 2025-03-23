@@ -23,7 +23,7 @@ export function BrowserRouter(routes) {
       return;
     }
 
-    document.body.innerHTML = redirectRoute.component;
+    document.body.innerHTML = redirectRoute.element;
   };
 
   window.addEventListener("popstate", render);
