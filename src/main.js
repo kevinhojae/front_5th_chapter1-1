@@ -4,6 +4,8 @@ import ProfilePage from "./pages/(app)/profile/page";
 import { createBrowserRouter } from "../lib/router";
 import AuthService from "../lib/services/auth";
 
+const App = (router) => router.run();
+
 const routes = [
   { path: "/", element: LandingPage },
   { path: "/profile", element: ProfilePage },
@@ -12,3 +14,5 @@ const routes = [
 
 const router = createBrowserRouter(routes);
 export const authService = new AuthService(router);
+
+App(router);
