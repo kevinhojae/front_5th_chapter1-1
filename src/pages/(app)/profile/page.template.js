@@ -1,4 +1,4 @@
-import { SubmitButton } from "../../../components/ui/submit-button";
+import { SubmitButton } from "../../../components";
 import Layout from "../layout";
 
 export const profileTemplate = (user) =>

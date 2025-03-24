@@ -1,6 +1,4 @@
-import { Header } from "../../components/ui/header";
-import { Nav } from "../../components/ui/nav";
-import { Footer } from "../../components/ui/footer";
+import { Header, Nav, Footer } from "../../components";
 
 export default function Layout(children) {
   return `

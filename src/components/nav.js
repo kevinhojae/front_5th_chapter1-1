@@ -1,5 +1,5 @@
-import AuthService from "../../../lib/services/auth";
-import { authService } from "../../main";
+import AuthService from "../../lib/services/auth";
+import { authService } from "../main";
 
 document.addEventListener("click", (e) => {
   if (e.target && e.target.id === "logout") {
