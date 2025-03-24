@@ -11,9 +11,10 @@ const routes = [
 
 export const router = BrowserRouter(routes);
 
-// TODO: refactor event handler register logic
+const rootElement = document.getElementById("root");
 
-document.body.addEventListener("submit", (event) => {
+// TODO: refactor event handler register logic
+rootElement.addEventListener("submit", (event) => {
   const form = event.target;
 
   if (form.getAttribute("data-form-type") === "login") {
@@ -29,13 +30,24 @@ document.body.addEventListener("submit", (event) => {
     );
     router.navigate("/");
   }
+
+  if (form.getAttribute("data-form-type") === "profile") {
+    event.preventDefault();
+    const formData = new FormData(form);
+
+    const userData = {
+      username: formData.get("username"),
+      email: formData.get("email"),
+      bio: formData.get("bio"),
+    };
+
+    localStorage.setItem("user", JSON.stringify(userData));
+  }
 });
 
-document.body.addEventListener("click", (event) => {
-  const logoutLink = event.target.closest("#logout");
-
-  if (logoutLink) {
-    event.preventDefault();
+rootElement.addEventListener("click", (e) => {
+  if (e.target && e.target.id === "logout") {
+    e.preventDefault();
     localStorage.removeItem("user");
     router.navigate("/login");
   }
