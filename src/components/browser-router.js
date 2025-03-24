@@ -13,7 +13,12 @@ export function BrowserRouter(routes) {
 
     const redirectRoute = routes.find((route) => route.path === currentPath);
 
-    const rootElement = document.getElementById("root");
+    let rootElement = document.getElementById("root");
+    if (!rootElement) {
+      rootElement = document.createElement("div");
+      rootElement.id = "root";
+      document.body.appendChild(rootElement);
+    }
 
     if (!redirectRoute) {
       rootElement.innerHTML = NotFound();
@@ -26,16 +31,18 @@ export function BrowserRouter(routes) {
       return;
     }
 
-    rootElement.innerHTML = redirectRoute.element;
+    rootElement.innerHTML = redirectRoute.element();
+  };
+
+  const navigate = (newPath) => {
+    window.history.pushState(null, "", newPath);
+    render();
   };
 
   window.addEventListener("popstate", render);
   render();
 
   return {
-    navigate: (newPath) => {
-      window.history.pushState(null, "", newPath);
-      render();
-    },
+    navigate,
   };
 }

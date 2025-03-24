@@ -4,9 +4,9 @@ import ProfilePage from "./pages/(app)/profile/page";
 import { BrowserRouter } from "./components/browser-router";
 
 const routes = [
-  { path: "/", element: LandingPage() },
-  { path: "/profile", element: ProfilePage() },
-  { path: "/login", element: LoginPage() },
+  { path: "/", element: LandingPage },
+  { path: "/profile", element: ProfilePage },
+  { path: "/login", element: LoginPage },
 ];
 
 export const router = BrowserRouter(routes);
