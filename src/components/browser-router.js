@@ -21,6 +21,7 @@ export function BrowserRouter(routes) {
     }
 
     if (currentPath !== "/" && !isAuthenticated) {
+      window.history.pushState(null, "", "/login");
       rootElement.innerHTML = LoginPage();
       return;
     }
