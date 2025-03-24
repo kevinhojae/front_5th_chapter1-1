@@ -1,12 +1,11 @@
-import { router } from "../../main";
+import { authService } from "../../main";
 
 // 문서 레벨에서 한 번만 이벤트 리스너 등록
 document.addEventListener("click", (e) => {
   // 로그아웃 버튼을 클릭했는지 확인
   if (e.target && e.target.id === "logout") {
     e.preventDefault();
-    localStorage.removeItem("user");
-    router.navigate("/login");
+    authService.logout();
   }
 });
 

@@ -1,4 +1,4 @@
-import { router } from "../../main";
+import { authService } from "../../main";
 import { loginTemplate } from "./page.template";
 
 export default function LoginPage(container) {
@@ -13,11 +13,7 @@ export default function LoginPage(container) {
     const username = formData.get("username");
     // const password = formData.get("password");
 
-    localStorage.setItem(
-      "user",
-      JSON.stringify({ username, email: "", bio: "" }),
-    );
-    router.navigate("/");
+    authService.login({ username });
   };
 
   container.innerHTML = loginTemplate();
