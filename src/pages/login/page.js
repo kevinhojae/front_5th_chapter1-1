@@ -1,27 +1,32 @@
-import { SubmitButton } from "../../components/ui/submit-button";
+import { router } from "../../main";
+import { loginTemplate } from "./page.template";
 
-export default function LoginPage() {
-  return `
-    <main class="bg-gray-100 flex items-center justify-center min-h-screen">
-      <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">항해플러스</h1>
-        <form id="login-form" data-form-type="login">
-          <div class="mb-4">
-            <input id="username" name="username" type="text" placeholder="사용자 이름" class="w-full p-2 border rounded">
-          </div>
-          <div class="mb-6">
-            <input id="password" name="password" type="password" placeholder="비밀번호" class="w-full p-2 border rounded">
-          </div>
-          ${SubmitButton({ label: "로그인" })}
-        </form>
-        <div class="mt-4 text-center">
-          <a href="#" class="text-blue-600 text-sm">비밀번호를 잊으셨나요?</a>
-        </div>
-        <hr class="my-6">
-        <div class="text-center">
-          <button class="bg-green-500 text-white px-4 py-2 rounded font-bold">새 계정 만들기</button>
-        </div>
-      </div>
-    </main>
-    `;
+export default function LoginPage(container) {
+  if (!container) return null;
+
+  const handleSubmit = (event) => {
+    const form = event.target;
+
+    event.preventDefault();
+    const formData = new FormData(form);
+
+    const username = formData.get("username");
+    // const password = formData.get("password");
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ username, email: "", bio: "" }),
+    );
+    router.navigate("/");
+  };
+
+  container.innerHTML = loginTemplate();
+
+  const loginForm = document.getElementById("login-form");
+  if (loginForm) loginForm.addEventListener("submit", handleSubmit);
+
+  return () => {
+    const loginForm = document.getElementById("login-form");
+    if (loginForm) loginForm.removeEventListener("submit", handleSubmit);
+  };
 }
