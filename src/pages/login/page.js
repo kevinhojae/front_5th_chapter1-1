@@ -1,4 +1,5 @@
-import { authService } from "../../main";
+import appContext from "@lib/contexts/app";
+
 import { loginTemplate } from "./page.template";
 
 export default function LoginPage(container) {
@@ -13,7 +14,7 @@ export default function LoginPage(container) {
     const username = formData.get("username");
     // const password = formData.get("password");
 
-    authService.login({ username });
+    appContext.authService.login({ username });
   };
 
   container.innerHTML = loginTemplate();
