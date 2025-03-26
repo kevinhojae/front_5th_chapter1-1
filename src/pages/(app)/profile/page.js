@@ -1,4 +1,4 @@
-import UserService from "../../../../lib/services/user";
+import UserService from "@lib/services/user";
 import { profileTemplate } from "./page.template";
 
 export default function ProfilePage(container) {

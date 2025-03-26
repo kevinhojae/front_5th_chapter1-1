@@ -1,4 +1,4 @@
-import { SubmitButton } from "../../components";
+import { SubmitButton } from "@components";
 
 export const loginTemplate = () => `
     <main class="bg-gray-100 flex items-center justify-center min-h-screen">
