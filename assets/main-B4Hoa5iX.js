@@ -1,13 +1,13 @@
-(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))o(r);new MutationObserver(r=>{for(const n of r)if(n.type==="childList")for(const i of n.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&o(i)}).observe(document,{childList:!0,subtree:!0});function a(r){const n={};return r.integrity&&(n.integrity=r.integrity),r.referrerPolicy&&(n.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?n.credentials="include":r.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function o(r){if(r.ep)return;r.ep=!0;const n=a(r);fetch(r.href,n)}})();class s{constructor(t){if(s.instance)return s.instance;s.instance=this,this.router=t}static get isAuthenticated(){return!!localStorage.getItem("user")}login({username:t}){localStorage.setItem("user",JSON.stringify({username:t,email:"",bio:""})),this.router.navigate("/")}logout(){localStorage.removeItem("user"),this.router.navigate("/login")}}function b({title:e}){return`
+(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))o(n);new MutationObserver(n=>{for(const r of n)if(r.type==="childList")for(const a of r.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&o(a)}).observe(document,{childList:!0,subtree:!0});function i(n){const r={};return n.integrity&&(r.integrity=n.integrity),n.referrerPolicy&&(r.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?r.credentials="include":n.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function o(n){if(n.ep)return;n.ep=!0;const r=i(n);fetch(n.href,r)}})();class s{constructor(t){if(s.instance)return s.instance;s.instance=this,this.router=t}static get isAuthenticated(){return!!localStorage.getItem("user")}login({username:t}){localStorage.setItem("user",JSON.stringify({username:t,email:"",bio:""})),this.router.navigate("/")}logout(){localStorage.removeItem("user"),this.router.navigate("/login")}}function b({title:e}){return`
     <header class="bg-blue-600 text-white p-4 sticky top-0">
       <h1 class="text-2xl font-bold">${e}</h1>
     </header>
-  `}document.addEventListener("click",e=>{if(e.target&&e.target.matches('nav a:not([id="logout"])')){e.preventDefault();const t=e.target.getAttribute("href");l.router.navigate(t)}e.target&&e.target.id==="logout"&&(e.preventDefault(),l.authService.logout())});function v(){const e=s.isAuthenticated,t=a=>{const{href:o,id:r,className:n,label:i}=a,u=l.routerType==="hash"?window.location.hash===o:window.location.pathname===o;return`<li><a id="${r}" href="${o}" class="${n} ${u?"font-bold":""}">${i}</a></li>`};return`
+  `}document.addEventListener("click",e=>{if(e.target&&e.target.matches('nav a:not([id="logout"])')){e.preventDefault();const t=e.target.getAttribute("href");l.router.navigate(t)}e.target&&e.target.id==="logout"&&(e.preventDefault(),l.authService.logout())});function v(){const e=s.isAuthenticated,t=i=>{const{href:o,id:n,label:r}=i,a=l.routerType==="hash"?window.location.hash===`#${o}`:window.location.pathname===o;return`<li><a id="${n}" href="${o}" class="${a?"font-bold text-blue-600":"text-gray-600"}">${r}</a></li>`};return`
     <nav role="navigation" class="bg-white shadow-md p-2 sticky top-14">
       <ul class="flex justify-around">
-        ${d.common.map(t).join("")}
-        ${e?d.authenticated.map(t).join(""):""}
-        ${e?"":d.unauthenticated.map(t).join("")}
+        ${u.common.map(t).join("")}
+        ${e?u.authenticated.map(t).join(""):""}
+        ${e?"":u.unauthenticated.map(t).join("")}
       </ul>
     </nav>
   `}function w(){return`
@@ -54,7 +54,7 @@
       <div class="space-y-4">
         ${y.map(e=>x({post:e})).join("")}
       </div>
-    `);function S(e){if(!e)return null;e.innerHTML=$()}class f{static get user(){const t=localStorage.getItem("user");return t?JSON.parse(t):{username:"",email:"",bio:""}}static set user({username:t,email:a,bio:o}){localStorage.setItem("user",JSON.stringify({username:t,email:a,bio:o}))}}const L=e=>p(()=>`
+    `);function S(e){if(!e)return null;e.innerHTML=$()}class f{static get user(){const t=localStorage.getItem("user");return t?JSON.parse(t):{username:"",email:"",bio:""}}static set user({username:t,email:i,bio:o}){localStorage.setItem("user",JSON.stringify({username:t,email:i,bio:o}))}}const L=e=>p(()=>`
     <div class="bg-white p-8 rounded-lg shadow-md">
       <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
         내 프로필
@@ -104,7 +104,7 @@
         ${g({label:"프로필 업데이트"})}
       </form >
     </div >
-  `);function I(e){if(!e)return null;const t=o=>{o.preventDefault();const r=o.target,n=new FormData(r);f.user={username:n.get("username"),email:n.get("email"),bio:n.get("bio")}};e.innerHTML=L(f.user);const a=document.getElementById("profile-form");return a&&a.addEventListener("submit",t),()=>{const o=document.getElementById("profile-form");o&&o.removeEventListener("submit",t)}}const E=()=>`
+  `);function I(e){if(!e)return null;const t=o=>{o.preventDefault();const n=o.target,r=new FormData(n);f.user={username:r.get("username"),email:r.get("email"),bio:r.get("bio")}};e.innerHTML=L(f.user);const i=document.getElementById("profile-form");return i&&i.addEventListener("submit",t),()=>{const o=document.getElementById("profile-form");o&&o.removeEventListener("submit",t)}}const E=()=>`
     <main class="bg-gray-100 flex items-center justify-center min-h-screen">
       <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">항해플러스</h1>
@@ -126,7 +126,7 @@
         </div>
       </div>
     </main>
-  `;function N(e){if(!e)return null;const t=o=>{const r=o.target;o.preventDefault();const i=new FormData(r).get("username");l.authService.login({username:i})};e.innerHTML=E();const a=document.getElementById("login-form");return a&&a.addEventListener("submit",t),()=>{const o=document.getElementById("login-form");o&&o.removeEventListener("submit",t)}}const P=[{path:"/",element:S},{path:"/profile",element:I},{path:"/login",element:N}],d={common:[{id:"home",label:"홈",href:"/",className:"text-blue-600"}],authenticated:[{id:"profile",label:"프로필",href:"/profile",className:"text-gray-600"},{id:"logout",label:"로그아웃",href:"#",className:"text-gray-600",action:"logout"}],unauthenticated:[{id:"login",label:"로그인",href:"/login",className:"text-gray-600"}]},m=(e,t)=>t.find(a=>a.path===e),A=({routes:e,routerType:t,renderCallback:a})=>()=>{const o=t==="hash"?window.location.hash.slice(1)||"/":window.location.pathname;let r=m(o,e);const n=s.isAuthenticated;r&&(o==="/login"&&n&&(h("/",t),r=m("/",e)),o!=="/"&&o!=="/login"&&!n&&(h("/login",t),r=m("/login",e))),a({redirectTo:r})},h=(e,t)=>{switch(t){case"hash":window.location.hash=e;break;case"browser":window.history.pushState({},"",e);break}};function O(){return`
+  `;function P(e){if(!e)return null;const t=o=>{const n=o.target;o.preventDefault();const a=new FormData(n).get("username");l.authService.login({username:a})};e.innerHTML=E();const i=document.getElementById("login-form");return i&&i.addEventListener("submit",t),()=>{const o=document.getElementById("login-form");o&&o.removeEventListener("submit",t)}}const A=[{path:"/",element:S},{path:"/profile",element:I},{path:"/login",element:P}],u={common:[{id:"home",label:"홈",href:"/"}],authenticated:[{id:"profile",label:"프로필",href:"/profile"},{id:"logout",label:"로그아웃",href:"#",action:"logout"}],unauthenticated:[{id:"login",label:"로그인",href:"/login"}]},d=(e,t)=>t.find(i=>i.path===e),O=({routes:e,routerType:t,renderCallback:i})=>()=>{const o=t==="hash"?window.location.hash.slice(1)||"/":window.location.pathname;let n=d(o,e);const r=s.isAuthenticated;n&&(o==="/login"&&r&&(h("/",t),n=d("/",e)),o!=="/"&&o!=="/login"&&!r&&(h("/login",t),n=d("/login",e))),i({redirectTo:n})},h=(e,t)=>{switch(t){case"hash":window.location.hash=e;break;case"browser":window.history.pushState({},"",e);break}};function F(){return`
     <main class="bg-gray-100 flex items-center justify-center min-h-screen">
       <div class="bg-white p-8 rounded-lg shadow-md w-full text-center" style="max-width: 480px">
         <h1 class="text-2xl font-bold text-blue-600 mb-4">항해플러스</h1>
@@ -140,4 +140,4 @@
         </a>
       </div>
     </main>
-  `}function F({routes:e,type:t}){if(!Array.isArray(e))throw new Error("Provide routes as array");let a=null;const o=A({routes:e,routerType:t,renderCallback:({redirectTo:i})=>{typeof a=="function"&&(a(),a=null);const u=document.getElementById("root");if(!i){u.innerHTML=O();return}a=i.element(u)}});return{navigate:i=>{t==="hash"?window.location.hash=i:window.history.pushState({},"",i),o()},run:()=>{window.addEventListener(t==="hash"?"hashchange":"popstate",o),o()}}}class c{constructor(){if(c.instance)return c.instance;c.instance=this,this.router=null,this.routerType=null,this.authService=null}initialize(t="browser"){this.routerType=t,this.router=F({routes:P,type:t}),this.authService=new s(this.router)}}const l=new c;l.initialize("hash");l.router.run();
+  `}function N({routes:e,type:t}){if(!Array.isArray(e))throw new Error("Provide routes as array");let i=null;const o=O({routes:e,routerType:t,renderCallback:({redirectTo:a})=>{typeof i=="function"&&(i(),i=null);const m=document.getElementById("root");if(!a){m.innerHTML=F();return}i=a.element(m)}});return{navigate:a=>{t==="hash"?window.location.hash=a:window.history.pushState({},"",a),o()},run:()=>{window.addEventListener(t==="hash"?"hashchange":"popstate",o),o()}}}class c{constructor(){if(c.instance)return c.instance;c.instance=this,this.router=null,this.routerType=null,this.authService=null}initialize(t="browser"){this.routerType=t,this.router=N({routes:A,type:t}),this.authService=new s(this.router)}}const l=new c;l.initialize("hash");l.router.run();
