@@ -21,14 +21,14 @@ export function Nav() {
   const isAuthenticated = AuthService.isAuthenticated;
 
   const navLink = (link) => {
-    const { href, id, className, label } = link;
+    const { href, id, label } = link;
 
     const isActive =
       appContext.routerType === "hash"
-        ? window.location.hash === href
+        ? window.location.hash === `#${href}`
         : window.location.pathname === href;
 
-    return `<li><a id="${id}" href="${href}" class="${className} ${isActive ? "font-bold" : ""}">${label}</a></li>`;
+    return `<li><a id="${id}" href="${href}" class="${isActive ? "font-bold text-blue-600" : "text-gray-600"}">${label}</a></li>`;
   };
 
   return `
