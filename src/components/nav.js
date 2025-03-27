@@ -3,6 +3,14 @@ import { NAV_CONFIGS } from "@lib/configs";
 import AuthService from "@lib/services/auth";
 
 document.addEventListener("click", (e) => {
+  // 네비게이션 링크 클릭 처리
+  if (e.target && e.target.matches('nav a:not([id="logout"])')) {
+    e.preventDefault();
+    const href = e.target.getAttribute("href");
+    appContext.router.navigate(href);
+  }
+
+  // 로그아웃 링크 클릭 처리
   if (e.target && e.target.id === "logout") {
     e.preventDefault();
     appContext.authService.logout();
@@ -13,12 +21,14 @@ export function Nav() {
   const isAuthenticated = AuthService.isAuthenticated;
 
   const navLink = (link) => {
+    const { href, id, className, label } = link;
+
     const isActive =
       appContext.routerType === "hash"
-        ? window.location.hash === link.href
-        : window.location.pathname === link.href;
+        ? window.location.hash === href
+        : window.location.pathname === href;
 
-    return `<li><a id="${link.id}" href="${link.href}" class="${link.className} ${isActive && "font-bold"}">${link.label}</a></li>`;
+    return `<li><a id="${id}" href="${href}" class="${className} ${isActive ? "font-bold" : ""}">${label}</a></li>`;
   };
 
   return `
