@@ -1,16 +1,16 @@
-(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))o(r);new MutationObserver(r=>{for(const a of r)if(a.type==="childList")for(const s of a.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&o(s)}).observe(document,{childList:!0,subtree:!0});function n(r){const a={};return r.integrity&&(a.integrity=r.integrity),r.referrerPolicy&&(a.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?a.credentials="include":r.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function o(r){if(r.ep)return;r.ep=!0;const a=n(r);fetch(r.href,a)}})();class i{constructor(t){if(i.instance)return i.instance;i.instance=this,this.router=t}static get isAuthenticated(){return!!localStorage.getItem("user")}login({username:t}){localStorage.setItem("user",JSON.stringify({username:t,email:"",bio:""})),this.router.navigate("/")}logout(){localStorage.removeItem("user"),this.router.navigate("/login")}}function b({title:e}){return`
+(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))o(n);new MutationObserver(n=>{for(const r of n)if(r.type==="childList")for(const i of r.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&o(i)}).observe(document,{childList:!0,subtree:!0});function a(n){const r={};return n.integrity&&(r.integrity=n.integrity),n.referrerPolicy&&(r.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?r.credentials="include":n.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function o(n){if(n.ep)return;n.ep=!0;const r=a(n);fetch(n.href,r)}})();class s{constructor(t){if(s.instance)return s.instance;s.instance=this,this.router=t}static get isAuthenticated(){return!!localStorage.getItem("user")}login({username:t}){localStorage.setItem("user",JSON.stringify({username:t,email:"",bio:""})),this.router.navigate("/")}logout(){localStorage.removeItem("user"),this.router.navigate("/login")}}function b({title:e}){return`
     <header class="bg-blue-600 text-white p-4 sticky top-0">
       <h1 class="text-2xl font-bold">${e}</h1>
     </header>
-  `}document.addEventListener("click",e=>{e.target&&e.target.id==="logout"&&(e.preventDefault(),d.authService.logout())});function w(){const e=i.isAuthenticated,t=n=>{const o=d.routerType==="hash"?window.location.hash===n.href:window.location.pathname===n.href;return`<li><a id="${n.id}" href="${n.href}" class="${n.className} ${o&&"font-bold"}">${n.label}</a></li>`};return`
+  `}document.addEventListener("click",e=>{if(e.target&&e.target.matches('nav a:not([id="logout"])')){e.preventDefault();const t=e.target.getAttribute("href");u.router.navigate(t)}e.target&&e.target.id==="logout"&&(e.preventDefault(),u.authService.logout())});function v(){const e=s.isAuthenticated,t=a=>{const{href:o,id:n,className:r,label:i}=a,c=u.routerType==="hash"?window.location.hash===o:window.location.pathname===o;return`<li><a id="${n}" href="${o}" class="${r} ${c&&"font-bold"}">${i}</a></li>`};return`
     <nav role="navigation" class="bg-white shadow-md p-2 sticky top-14">
       <ul class="flex justify-around">
-        ${c.common.map(t).join("")}
-        ${e?c.authenticated.map(t).join(""):""}
-        ${e?"":c.unauthenticated.map(t).join("")}
+        ${d.common.map(t).join("")}
+        ${e?d.authenticated.map(t).join(""):""}
+        ${e?"":d.unauthenticated.map(t).join("")}
       </ul>
     </nav>
-  `}function v(){return`
+  `}function w(){return`
     <footer class="bg-gray-200 p-4 text-center">
       <p>&copy; 2024 항해플러스. All rights reserved.</p>
     </footer>
@@ -23,11 +23,11 @@
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
         ${b({title:"항해플러스"})}
-        ${w()}
+        ${v()}
         <main class="p-4">
           ${e()}
         </main>
-        ${v()}
+        ${w()}
       </div>
     </div>
   `}function x({post:e}){return`
@@ -54,7 +54,7 @@
       <div class="space-y-4">
         ${y.map(e=>x({post:e})).join("")}
       </div>
-    `);function S(e){if(!e)return null;e.innerHTML=$()}class f{static get user(){const t=localStorage.getItem("user");return t?JSON.parse(t):{username:"",email:"",bio:""}}static set user({username:t,email:n,bio:o}){localStorage.setItem("user",JSON.stringify({username:t,email:n,bio:o}))}}const L=e=>p(()=>`
+    `);function S(e){if(!e)return null;e.innerHTML=$()}class f{static get user(){const t=localStorage.getItem("user");return t?JSON.parse(t):{username:"",email:"",bio:""}}static set user({username:t,email:a,bio:o}){localStorage.setItem("user",JSON.stringify({username:t,email:a,bio:o}))}}const L=e=>p(()=>`
     <div class="bg-white p-8 rounded-lg shadow-md">
       <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
         내 프로필
@@ -104,7 +104,7 @@
         ${g({label:"프로필 업데이트"})}
       </form >
     </div >
-  `);function I(e){if(!e)return null;const t=o=>{o.preventDefault();const r=o.target,a=new FormData(r);f.user={username:a.get("username"),email:a.get("email"),bio:a.get("bio")}};e.innerHTML=L(f.user);const n=document.getElementById("profile-form");return n&&n.addEventListener("submit",t),()=>{const o=document.getElementById("profile-form");o&&o.removeEventListener("submit",t)}}const P=()=>`
+  `);function I(e){if(!e)return null;const t=o=>{o.preventDefault();const n=o.target,r=new FormData(n);f.user={username:r.get("username"),email:r.get("email"),bio:r.get("bio")}};e.innerHTML=L(f.user);const a=document.getElementById("profile-form");return a&&a.addEventListener("submit",t),()=>{const o=document.getElementById("profile-form");o&&o.removeEventListener("submit",t)}}const E=()=>`
     <main class="bg-gray-100 flex items-center justify-center min-h-screen">
       <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">항해플러스</h1>
@@ -126,7 +126,7 @@
         </div>
       </div>
     </main>
-  `;function E(e){if(!e)return null;const t=o=>{const r=o.target;o.preventDefault();const s=new FormData(r).get("username");d.authService.login({username:s})};e.innerHTML=P();const n=document.getElementById("login-form");return n&&n.addEventListener("submit",t),()=>{const o=document.getElementById("login-form");o&&o.removeEventListener("submit",t)}}const N=[{path:"/",element:S},{path:"/profile",element:I},{path:"/login",element:E}],c={common:[{id:"home",label:"홈",href:"/",className:"text-blue-600"}],authenticated:[{id:"profile",label:"프로필",href:"/profile",className:"text-gray-600"},{id:"logout",label:"로그아웃",href:"#",className:"text-gray-600",action:"logout"}],unauthenticated:[{id:"login",label:"로그인",href:"/login",className:"text-gray-600"}]},u=(e,t)=>t.find(n=>n.path===e),A=({routes:e,routerType:t,renderCallback:n})=>()=>{console.log("routerType",t);const o=t==="hash"?window.location.hash.slice(1)||"/":window.location.pathname;console.log("window.location.hash",window.location.hash),console.log("currentPath",o);let r=u(o,e);const a=i.isAuthenticated;r&&(o==="/login"&&a&&(h("/",t),r=u("/",e)),o!=="/"&&o!=="/login"&&!a&&(h("/login",t),r=u("/login",e))),n({redirectTo:r})},h=(e,t)=>{switch(t){case"hash":window.location.hash=`#${e}`;break;case"browser":window.history.pushState({},"",e);break}};function O(){return`
+  `;function N(e){if(!e)return null;const t=o=>{const n=o.target;o.preventDefault();const i=new FormData(n).get("username");u.authService.login({username:i})};e.innerHTML=E();const a=document.getElementById("login-form");return a&&a.addEventListener("submit",t),()=>{const o=document.getElementById("login-form");o&&o.removeEventListener("submit",t)}}const P=[{path:"/",element:S},{path:"/profile",element:I},{path:"/login",element:N}],d={common:[{id:"home",label:"홈",href:"/",className:"text-blue-600"}],authenticated:[{id:"profile",label:"프로필",href:"/profile",className:"text-gray-600"},{id:"logout",label:"로그아웃",href:"#",className:"text-gray-600",action:"logout"}],unauthenticated:[{id:"login",label:"로그인",href:"/login",className:"text-gray-600"}]},m=(e,t)=>t.find(a=>a.path===e),A=({routes:e,routerType:t,renderCallback:a})=>()=>{console.log("routerType",t),console.log("window.location.hash prev",window.location.hash);const o=t==="hash"?window.location.hash.slice(1)||"/":window.location.pathname||"/";console.log("window.location.hash",window.location.hash),console.log("currentPath",o);let n=m(o,e);const r=s.isAuthenticated;n&&(o==="/login"&&r&&(h("/",t),n=m("/",e)),o!=="/"&&o!=="/login"&&!r&&(h("/login",t),n=m("/login",e))),a({redirectTo:n})},h=(e,t)=>{switch(t){case"hash":window.location.hash=e;break;case"browser":window.history.pushState({},"",e);break}};function O(){return`
     <main class="bg-gray-100 flex items-center justify-center min-h-screen">
       <div class="bg-white p-8 rounded-lg shadow-md w-full text-center" style="max-width: 480px">
         <h1 class="text-2xl font-bold text-blue-600 mb-4">항해플러스</h1>
@@ -140,4 +140,4 @@
         </a>
       </div>
     </main>
-  `}function F({routes:e,type:t}){if(!Array.isArray(e))throw new Error("Provide routes as array");let n=null;const o=A({routes:e,routerType:t,renderCallback:({redirectTo:s})=>{typeof n=="function"&&(n(),n=null);const m=document.getElementById("root");if(!s){m.innerHTML=O();return}n=s.element(m)}});return{navigate:s=>{t==="hash"?window.location.hash=s:window.history.pushState({},"",s),o()},run:()=>{window.addEventListener(t==="hash"?"hashchange":"popstate",o),o()}}}class l{constructor(){if(l.instance)return l.instance;l.instance=this,this.router=null,this.routerType=null,this.authService=null}initialize(t="browser"){this.routerType=t,this.router=F({routes:N,type:t}),this.authService=new i(this.router)}}const d=new l;export{d as a};
+  `}function F({routes:e,type:t}){if(!Array.isArray(e))throw new Error("Provide routes as array");let a=null;const o=A({routes:e,routerType:t,renderCallback:({redirectTo:i})=>{typeof a=="function"&&(a(),a=null);const c=document.getElementById("root");if(!i){c.innerHTML=O();return}a=i.element(c)}});return{navigate:i=>{t==="hash"?(console.log("hash",i),window.location.hash=i):window.history.pushState({},"",i),o()},run:()=>{window.addEventListener(t==="hash"?"hashchange":"popstate",o),o()}}}class l{constructor(){if(l.instance)return l.instance;l.instance=this,this.router=null,this.routerType=null,this.authService=null}initialize(t="browser"){this.routerType=t,this.router=F({routes:P,type:t}),this.authService=new s(this.router)}}const u=new l;export{u as a};
