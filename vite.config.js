@@ -6,7 +6,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        hash: path.resolve(__dirname, "index.hash.html"),
+        main: path.resolve(__dirname, "index.hash.html"),
       },
     },
   },
