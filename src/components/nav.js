@@ -1,4 +1,4 @@
-import appContext from "@lib/contexts/app";
+import env from "@lib/contexts/env";
 import { NAV_CONFIGS } from "@lib/configs";
 import AuthService from "@lib/services/auth";
 
@@ -7,13 +7,13 @@ document.addEventListener("click", (e) => {
   if (e.target && e.target.matches('nav a:not([id="logout"])')) {
     e.preventDefault();
     const href = e.target.getAttribute("href");
-    appContext.router.navigate(href);
+    env.router.navigate(href);
   }
 
   // 로그아웃 링크 클릭 처리
   if (e.target && e.target.id === "logout") {
     e.preventDefault();
-    appContext.authService.logout();
+    env.authService.logout();
   }
 });
 
@@ -24,7 +24,7 @@ export function Nav() {
     const { href, id, label } = link;
 
     const isActive =
-      appContext.routerType === "hash"
+      env.routerType === "hash"
         ? window.location.hash === `#${href}`
         : window.location.pathname === href;
 

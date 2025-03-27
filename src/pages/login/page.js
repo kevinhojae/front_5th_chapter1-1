@@ -1,4 +1,4 @@
-import appContext from "@lib/contexts/app";
+import env from "@lib/contexts/env";
 
 import { loginTemplate } from "./page.template";
 
@@ -14,7 +14,7 @@ export default function LoginPage(container) {
     const username = formData.get("username");
     // const password = formData.get("password");
 
-    appContext.authService.login({ username });
+    env.authService.login({ username });
   };
 
   container.innerHTML = loginTemplate();
