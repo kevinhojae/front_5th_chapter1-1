@@ -2,21 +2,6 @@ import env from "@lib/contexts/env";
 import { NAV_CONFIGS } from "@lib/configs";
 import AuthService from "@lib/services/auth";
 
-document.addEventListener("click", (e) => {
-  // 네비게이션 링크 클릭 처리
-  if (e.target && e.target.matches('nav a:not([id="logout"])')) {
-    e.preventDefault();
-    const href = e.target.getAttribute("href");
-    env.router.navigate(href);
-  }
-
-  // 로그아웃 링크 클릭 처리
-  if (e.target && e.target.id === "logout") {
-    e.preventDefault();
-    env.authService.logout();
-  }
-});
-
 export function Nav() {
   const isAuthenticated = AuthService.isAuthenticated;
 
@@ -32,7 +17,7 @@ export function Nav() {
   };
 
   return `
-    <nav role="navigation" class="bg-white shadow-md p-2 sticky top-14">
+    <nav id="nav" role="navigation" class="bg-white shadow-md p-2 sticky top-14">
       <ul class="flex justify-around">
         ${NAV_CONFIGS.common.map(navLink).join("")}
         ${isAuthenticated ? NAV_CONFIGS.authenticated.map(navLink).join("") : ""}

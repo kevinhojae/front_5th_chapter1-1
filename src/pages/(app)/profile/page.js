@@ -1,5 +1,6 @@
 import UserService from "@lib/services/user";
 import { profileTemplate } from "./page.template";
+import Layout from "../layout";
 
 export default function ProfilePage(container) {
   if (!container) return null;
@@ -16,7 +17,11 @@ export default function ProfilePage(container) {
     };
   };
 
-  container.innerHTML = profileTemplate(UserService.user);
+  const { html, cleanUp } = Layout(container, {
+    children: () => profileTemplate(UserService.user),
+  });
+
+  container.innerHTML = html;
 
   const profileForm = document.getElementById("profile-form");
   if (profileForm) profileForm.addEventListener("submit", handleSubmit);
@@ -24,5 +29,6 @@ export default function ProfilePage(container) {
   return () => {
     const profileForm = document.getElementById("profile-form");
     if (profileForm) profileForm.removeEventListener("submit", handleSubmit);
+    if (cleanUp) cleanUp();
   };
 }

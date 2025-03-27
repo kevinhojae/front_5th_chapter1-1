@@ -1,10 +1,7 @@
 import { SubmitButton } from "@components";
-import Layout from "../layout";
 
 export const profileTemplate = (user) =>
-  Layout(
-    () =>
-      `
+  `
     <div class="bg-white p-8 rounded-lg shadow-md">
       <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
         내 프로필
@@ -54,5 +51,4 @@ export const profileTemplate = (user) =>
         ${SubmitButton({ label: "프로필 업데이트" })}
       </form >
     </div >
-  `,
-  );
+`;
