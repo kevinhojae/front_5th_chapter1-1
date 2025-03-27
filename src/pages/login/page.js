@@ -24,6 +24,6 @@ export default function LoginPage(container) {
 
   return () => {
     const loginForm = document.getElementById("login-form");
-    if (loginForm) loginForm.removeEventListener("submit", handleSubmit);
+    loginForm?.removeEventListener("submit", handleSubmit);
   };
 }

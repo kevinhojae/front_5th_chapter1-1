@@ -10,7 +10,5 @@ export default function LandingPage(container) {
 
   container.innerHTML = html;
 
-  return () => {
-    if (cleanUp) cleanUp();
-  };
+  return () => cleanUp?.();
 }

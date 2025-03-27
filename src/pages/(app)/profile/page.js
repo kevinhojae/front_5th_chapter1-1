@@ -24,11 +24,11 @@ export default function ProfilePage(container) {
   container.innerHTML = html;
 
   const profileForm = document.getElementById("profile-form");
-  if (profileForm) profileForm.addEventListener("submit", handleSubmit);
+  profileForm?.addEventListener("submit", handleSubmit);
 
   return () => {
     const profileForm = document.getElementById("profile-form");
-    if (profileForm) profileForm.removeEventListener("submit", handleSubmit);
-    if (cleanUp) cleanUp();
+    profileForm?.removeEventListener("submit", handleSubmit);
+    cleanUp?.();
   };
 }
