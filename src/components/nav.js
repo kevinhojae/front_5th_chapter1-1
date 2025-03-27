@@ -25,8 +25,8 @@ export function Nav() {
     <nav role="navigation" class="bg-white shadow-md p-2 sticky top-14">
       <ul class="flex justify-around">
         ${NAV_CONFIGS.common.map(navLink).join("")}
-        ${isAuthenticated && NAV_CONFIGS.authenticated.map(navLink).join("")}
-        ${!isAuthenticated && NAV_CONFIGS.unauthenticated.map(navLink).join("")}
+        ${isAuthenticated ? NAV_CONFIGS.authenticated.map(navLink).join("") : ""}
+        ${!isAuthenticated ? NAV_CONFIGS.unauthenticated.map(navLink).join("") : ""}
       </ul>
     </nav>
   `;
