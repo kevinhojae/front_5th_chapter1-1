@@ -6,8 +6,8 @@
     <nav role="navigation" class="bg-white shadow-md p-2 sticky top-14">
       <ul class="flex justify-around">
         ${u.common.map(t).join("")}
-        ${e&&u.authenticated.map(t).join("")}
-        ${!e&&u.unauthenticated.map(t).join("")}
+        ${e?u.authenticated.map(t).join(""):""}
+        ${e?"":u.unauthenticated.map(t).join("")}
       </ul>
     </nav>
   `}function v(){return`
