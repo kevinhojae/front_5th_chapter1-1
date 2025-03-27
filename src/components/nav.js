@@ -1,5 +1,5 @@
 import env from "@lib/contexts/app";
-import { NAV_CONFIGS } from "@lib/configs";
+import { NAV_CONFIGS } from "@lib/configs/nav";
 import AuthService from "@lib/services/auth";
 
 export function Nav() {
