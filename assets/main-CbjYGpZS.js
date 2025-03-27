@@ -1,16 +1,16 @@
-(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))o(n);new MutationObserver(n=>{for(const a of n)if(a.type==="childList")for(const i of a.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&o(i)}).observe(document,{childList:!0,subtree:!0});function r(n){const a={};return n.integrity&&(a.integrity=n.integrity),n.referrerPolicy&&(a.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?a.credentials="include":n.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function o(n){if(n.ep)return;n.ep=!0;const a=r(n);fetch(n.href,a)}})();class s{constructor(t){if(s.instance)return s.instance;s.instance=this,this.router=t}static get isAuthenticated(){return!!localStorage.getItem("user")}login({username:t}){localStorage.setItem("user",JSON.stringify({username:t,email:"",bio:""})),this.router.navigate("/")}logout(){localStorage.removeItem("user"),this.router.navigate("/login")}}function b({title:e}){return`
+(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))o(r);new MutationObserver(r=>{for(const a of r)if(a.type==="childList")for(const i of a.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&o(i)}).observe(document,{childList:!0,subtree:!0});function n(r){const a={};return r.integrity&&(a.integrity=r.integrity),r.referrerPolicy&&(a.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?a.credentials="include":r.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function o(r){if(r.ep)return;r.ep=!0;const a=n(r);fetch(r.href,a)}})();class s{constructor(t){if(s.instance)return s.instance;s.instance=this,this.router=t}static get isAuthenticated(){return!!localStorage.getItem("user")}login({username:t}){localStorage.setItem("user",JSON.stringify({username:t,email:"",bio:""})),this.router.navigate("/")}logout(){localStorage.removeItem("user"),this.router.navigate("/login")}}function b({title:e}){return`
     <header class="bg-blue-600 text-white p-4 sticky top-0">
       <h1 class="text-2xl font-bold">${e}</h1>
     </header>
-  `}document.addEventListener("click",e=>{e.target&&e.target.id==="logout"&&(e.preventDefault(),d.authService.logout())});function v(){const e=s.isAuthenticated,t=r=>{const o=d.routerType==="hash"?window.location.hash===r.href:window.location.pathname===r.href;return`<li><a id="${r.id}" href="${r.href}" class="${r.className} ${o&&"font-bold"}">${r.label}</a></li>`};return`
+  `}document.addEventListener("click",e=>{e.target&&e.target.id==="logout"&&(e.preventDefault(),l.authService.logout())});function w(){const e=s.isAuthenticated,t=n=>{const o=l.routerType==="hash"?window.location.hash===n.href:window.location.pathname===n.href;return`<li><a id="${n.id}" href="${n.href}" class="${n.className} ${o&&"font-bold"}">${n.label}</a></li>`};return`
     <nav role="navigation" class="bg-white shadow-md p-2 sticky top-14">
       <ul class="flex justify-around">
-        ${c.common.map(t).join("")}
-        ${e&&c.authenticated.map(t).join("")}
-        ${!e&&c.unauthenticated.map(t).join("")}
+        ${u.common.map(t).join("")}
+        ${e&&u.authenticated.map(t).join("")}
+        ${!e&&u.unauthenticated.map(t).join("")}
       </ul>
     </nav>
-  `}function x(){return`
+  `}function v(){return`
     <footer class="bg-gray-200 p-4 text-center">
       <p>&copy; 2024 항해플러스. All rights reserved.</p>
     </footer>
@@ -23,14 +23,14 @@
     <div class="bg-gray-100 min-h-screen flex justify-center">
       <div class="max-w-md w-full">
         ${b({title:"항해플러스"})}
-        ${v()}
+        ${w()}
         <main class="p-4">
           ${e()}
         </main>
-        ${x()}
+        ${v()}
       </div>
     </div>
-  `}function w({post:e}){return`
+  `}function x({post:e}){return`
     <div class="bg-white rounded-lg shadow p-4">
       <div class="flex items-center mb-2">
         <img src="${e.profileImage}" alt="프로필" class="rounded-full mr-2">
@@ -52,9 +52,9 @@
         <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded">게시</button>
       </div>
       <div class="space-y-4">
-        ${y.map(e=>w({post:e})).join("")}
+        ${y.map(e=>x({post:e})).join("")}
       </div>
-    `);function S(e){if(!e)return null;e.innerHTML=$()}class f{static get user(){const t=localStorage.getItem("user");return t?JSON.parse(t):{username:"",email:"",bio:""}}static set user({username:t,email:r,bio:o}){localStorage.setItem("user",JSON.stringify({username:t,email:r,bio:o}))}}const L=e=>p(()=>`
+    `);function S(e){if(!e)return null;e.innerHTML=$()}class f{static get user(){const t=localStorage.getItem("user");return t?JSON.parse(t):{username:"",email:"",bio:""}}static set user({username:t,email:n,bio:o}){localStorage.setItem("user",JSON.stringify({username:t,email:n,bio:o}))}}const L=e=>p(()=>`
     <div class="bg-white p-8 rounded-lg shadow-md">
       <h2 class="text-2xl font-bold text-center text-blue-600 mb-8">
         내 프로필
@@ -104,7 +104,7 @@
         ${g({label:"프로필 업데이트"})}
       </form >
     </div >
-  `);function I(e){if(!e)return null;const t=o=>{o.preventDefault();const n=o.target,a=new FormData(n);f.user={username:a.get("username"),email:a.get("email"),bio:a.get("bio")}};e.innerHTML=L(f.user);const r=document.getElementById("profile-form");return r&&r.addEventListener("submit",t),()=>{const o=document.getElementById("profile-form");o&&o.removeEventListener("submit",t)}}const E=()=>`
+  `);function I(e){if(!e)return null;const t=o=>{o.preventDefault();const r=o.target,a=new FormData(r);f.user={username:a.get("username"),email:a.get("email"),bio:a.get("bio")}};e.innerHTML=L(f.user);const n=document.getElementById("profile-form");return n&&n.addEventListener("submit",t),()=>{const o=document.getElementById("profile-form");o&&o.removeEventListener("submit",t)}}const P=()=>`
     <main class="bg-gray-100 flex items-center justify-center min-h-screen">
       <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">항해플러스</h1>
@@ -126,7 +126,7 @@
         </div>
       </div>
     </main>
-  `;function N(e){if(!e)return null;const t=o=>{const n=o.target;o.preventDefault();const i=new FormData(n).get("username");d.authService.login({username:i})};e.innerHTML=E();const r=document.getElementById("login-form");return r&&r.addEventListener("submit",t),()=>{const o=document.getElementById("login-form");o&&o.removeEventListener("submit",t)}}const P=[{path:"/",element:S},{path:"/profile",element:I},{path:"/login",element:N}],c={common:[{id:"home",label:"홈",href:"/",className:"text-blue-600"}],authenticated:[{id:"profile",label:"프로필",href:"/profile",className:"text-gray-600"},{id:"logout",label:"로그아웃",href:"#",className:"text-gray-600",action:"logout"}],unauthenticated:[{id:"login",label:"로그인",href:"/login",className:"text-gray-600"}]},u=(e,t)=>t.find(r=>r.path===e),A=({routes:e,routerType:t,renderCallback:r})=>()=>{const o=t==="hash"?window.location.hash.slice(1):window.location.pathname;let n=u(o,e);const a=s.isAuthenticated;n&&(o==="/login"&&a&&(h("/",t),n=u("/",e)),o!=="/"&&o!=="/login"&&!a&&(h("/login",t),n=u("/login",e))),r({redirectTo:n})},h=(e,t)=>{switch(t){case"hash":window.location.hash=`#${e}`;break;case"browser":window.history.pushState({},"",e);break}};function O(){return`
+  `;function E(e){if(!e)return null;const t=o=>{const r=o.target;o.preventDefault();const i=new FormData(r).get("username");l.authService.login({username:i})};e.innerHTML=P();const n=document.getElementById("login-form");return n&&n.addEventListener("submit",t),()=>{const o=document.getElementById("login-form");o&&o.removeEventListener("submit",t)}}const N=[{path:"/",element:S},{path:"/profile",element:I},{path:"/login",element:E}],u={common:[{id:"home",label:"홈",href:"/",className:"text-blue-600"}],authenticated:[{id:"profile",label:"프로필",href:"/profile",className:"text-gray-600"},{id:"logout",label:"로그아웃",href:"#",className:"text-gray-600",action:"logout"}],unauthenticated:[{id:"login",label:"로그인",href:"/login",className:"text-gray-600"}]},d=(e,t)=>t.find(n=>n.path===e),A=({routes:e,routerType:t,renderCallback:n})=>()=>{console.log("routerType",t);const o=t==="hash"?window.location.hash.slice(1)||"/":window.location.pathname;console.log("window.location.hash",window.location.hash),console.log("currentPath",o);let r=d(o,e);const a=s.isAuthenticated;r&&(o==="/login"&&a&&(h("/",t),r=d("/",e)),o!=="/"&&o!=="/login"&&!a&&(h("/login",t),r=d("/login",e))),n({redirectTo:r})},h=(e,t)=>{switch(t){case"hash":window.location.hash=`#${e}`;break;case"browser":window.history.pushState({},"",e);break}};function T(){return`
     <main class="bg-gray-100 flex items-center justify-center min-h-screen">
       <div class="bg-white p-8 rounded-lg shadow-md w-full text-center" style="max-width: 480px">
         <h1 class="text-2xl font-bold text-blue-600 mb-4">항해플러스</h1>
@@ -140,4 +140,4 @@
         </a>
       </div>
     </main>
-  `}function F({routes:e,type:t}){if(!Array.isArray(e))throw new Error("Provide routes as array");let r=null;const o=A({routes:e,routerType:t,renderCallback:({redirectTo:i})=>{typeof r=="function"&&(r(),r=null);const m=document.getElementById("root");if(!i){m.innerHTML=O();return}r=i.element(m)}});return{navigate:i=>{t==="hash"?window.location.hash=i:window.history.pushState({},"",i),o()},run:()=>{window.addEventListener(t==="hash"?"hashchange":"popstate",o),o()}}}class l{constructor(){if(l.instance)return l.instance;l.instance=this,this.router=null,this.routerType=null,this.authService=null}initialize(t="browser"){this.routerType=t,this.router=F({routes:P,type:t}),this.authService=new s(this.router)}}const d=new l;export{d as a};
+  `}function O({routes:e,type:t}){if(!Array.isArray(e))throw new Error("Provide routes as array");let n=null;const o=A({routes:e,routerType:t,renderCallback:({redirectTo:i})=>{typeof n=="function"&&(n(),n=null);const m=document.getElementById("root");if(!i){m.innerHTML=T();return}n=i.element(m)}});return{navigate:i=>{t==="hash"?window.location.hash=i:window.history.pushState({},"",i),o()},run:()=>{window.addEventListener(t==="hash"?"hashchange":"popstate",o),o()}}}class c{constructor(){if(c.instance)return c.instance;c.instance=this,this.router=null,this.routerType=null,this.authService=null}initialize(t="browser"){this.routerType=t,this.router=O({routes:N,type:t}),this.authService=new s(this.router)}}const l=new c;l.initialize("hash");console.log("In main.hash.js - appContext.routerType",l.routerType);l.router.run();
