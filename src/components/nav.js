@@ -1,4 +1,4 @@
-import env from "@lib/contexts/env";
+import env from "@lib/contexts/app";
 import { NAV_CONFIGS } from "@lib/configs";
 import AuthService from "@lib/services/auth";
 

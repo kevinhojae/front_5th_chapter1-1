@@ -1,4 +1,4 @@
-import env from "@lib/contexts/env";
+import app from "@lib/contexts/app";
 
-env.initialize("hash");
-env.router.run();
+app.initialize("hash");
+app.router.run();

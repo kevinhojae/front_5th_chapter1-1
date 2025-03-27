@@ -1,4 +1,4 @@
-import env from "@lib/contexts/env";
+import env from "@lib/contexts/app";
 
 import { loginTemplate } from "./page.template";
 

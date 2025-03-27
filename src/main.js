@@ -1,4 +1,4 @@
-import env from "@lib/contexts/env";
+import app from "@lib/contexts/app";
 
-env.initialize("browser");
-env.router.run();
+app.initialize("browser");
+app.router.run();
