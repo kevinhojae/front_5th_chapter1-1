@@ -1,4 +1,4 @@
-import env from "@lib/contexts/app";
+import app from "@lib/contexts/app";
 import { NAV_CONFIGS } from "@lib/configs/nav";
 import AuthService from "@lib/services/auth";
 
@@ -9,7 +9,7 @@ export function Nav() {
     const { href, id, label } = link;
 
     const isActive =
-      env.routerType === "hash"
+      app.routerType === "hash"
         ? window.location.hash === `#${href}`
         : window.location.pathname === href;
 

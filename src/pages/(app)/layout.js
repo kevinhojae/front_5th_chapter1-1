@@ -1,4 +1,4 @@
-import env from "@lib/contexts/app";
+import app from "@lib/contexts/app";
 import { Header, Nav, Footer } from "@components";
 
 export default function Layout(container, { children }) {
@@ -8,14 +8,14 @@ export default function Layout(container, { children }) {
     if (e.target && e.target.matches('nav a:not([id="logout"])')) {
       e.preventDefault();
       const href = e.target.getAttribute("href");
-      env.router.navigate(href);
+      app.router.navigate(href);
     }
   };
 
   const handleLogout = (e) => {
     if (e.target && e.target.id === "logout") {
       e.preventDefault();
-      env.authService.logout();
+      app.authService.logout();
     }
   };
 
